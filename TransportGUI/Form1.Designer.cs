@@ -30,12 +30,17 @@
         {
             this.lblFrom = new System.Windows.Forms.Label();
             this.lblTo = new System.Windows.Forms.Label();
-            this.ddlStartstation = new System.Windows.Forms.ComboBox();
-            this.ddlEndstation = new System.Windows.Forms.ComboBox();
+            this.ddlStartStation = new System.Windows.Forms.ComboBox();
+            this.ddlEndStation = new System.Windows.Forms.ComboBox();
             this.btnSearchStartStation = new System.Windows.Forms.Button();
             this.btnSearchEndStation = new System.Windows.Forms.Button();
             this.btnSearchConnection = new System.Windows.Forms.Button();
             this.dgvAbfahrtsplan = new System.Windows.Forms.DataGridView();
+            this.Abfahrtsort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Abfahrtszeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ankunftsort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ankunftszeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gleis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAbfahrtsTafel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAbfahrtsplan)).BeginInit();
@@ -59,21 +64,21 @@
             this.lblTo.TabIndex = 1;
             this.lblTo.Text = "Nach:";
             // 
-            // ddlStartstation
+            // ddlStartStation
             // 
-            this.ddlStartstation.FormattingEnabled = true;
-            this.ddlStartstation.Location = new System.Drawing.Point(47, 6);
-            this.ddlStartstation.Name = "ddlStartstation";
-            this.ddlStartstation.Size = new System.Drawing.Size(275, 21);
-            this.ddlStartstation.TabIndex = 1;
+            this.ddlStartStation.FormattingEnabled = true;
+            this.ddlStartStation.Location = new System.Drawing.Point(47, 6);
+            this.ddlStartStation.Name = "ddlStartStation";
+            this.ddlStartStation.Size = new System.Drawing.Size(275, 21);
+            this.ddlStartStation.TabIndex = 1;
             // 
-            // ddlEndstation
+            // ddlEndStation
             // 
-            this.ddlEndstation.FormattingEnabled = true;
-            this.ddlEndstation.Location = new System.Drawing.Point(370, 6);
-            this.ddlEndstation.Name = "ddlEndstation";
-            this.ddlEndstation.Size = new System.Drawing.Size(275, 21);
-            this.ddlEndstation.TabIndex = 3;
+            this.ddlEndStation.FormattingEnabled = true;
+            this.ddlEndStation.Location = new System.Drawing.Point(370, 6);
+            this.ddlEndStation.Name = "ddlEndStation";
+            this.ddlEndStation.Size = new System.Drawing.Size(275, 21);
+            this.ddlEndStation.TabIndex = 3;
             // 
             // btnSearchStartStation
             // 
@@ -99,24 +104,63 @@
             // 
             this.btnSearchConnection.Location = new System.Drawing.Point(247, 91);
             this.btnSearchConnection.Name = "btnSearchConnection";
-            this.btnSearchConnection.Size = new System.Drawing.Size(183, 23);
+            this.btnSearchConnection.Size = new System.Drawing.Size(195, 23);
             this.btnSearchConnection.TabIndex = 5;
             this.btnSearchConnection.Text = "Verbindung suchen";
             this.btnSearchConnection.UseVisualStyleBackColor = true;
+            this.btnSearchConnection.Click += new System.EventHandler(this.BtnSearchConnection_Click);
             // 
             // dgvAbfahrtsplan
             // 
+            this.dgvAbfahrtsplan.AllowUserToAddRows = false;
             this.dgvAbfahrtsplan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAbfahrtsplan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAbfahrtsplan.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvAbfahrtsplan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAbfahrtsplan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Abfahrtsort,
+            this.Abfahrtszeit,
+            this.Ankunftsort,
+            this.Ankunftszeit,
+            this.Gleis});
             this.dgvAbfahrtsplan.Location = new System.Drawing.Point(12, 139);
             this.dgvAbfahrtsplan.Name = "dgvAbfahrtsplan";
             this.dgvAbfahrtsplan.ReadOnly = true;
+            this.dgvAbfahrtsplan.RowHeadersVisible = false;
             this.dgvAbfahrtsplan.Size = new System.Drawing.Size(633, 254);
             this.dgvAbfahrtsplan.TabIndex = 7;
+            // 
+            // Abfahrtsort
+            // 
+            this.Abfahrtsort.HeaderText = "Abfahrtsort";
+            this.Abfahrtsort.Name = "Abfahrtsort";
+            this.Abfahrtsort.ReadOnly = true;
+            // 
+            // Abfahrtszeit
+            // 
+            this.Abfahrtszeit.HeaderText = "Abfahrtszeit";
+            this.Abfahrtszeit.Name = "Abfahrtszeit";
+            this.Abfahrtszeit.ReadOnly = true;
+            // 
+            // Ankunftsort
+            // 
+            this.Ankunftsort.HeaderText = "Ankunftsort";
+            this.Ankunftsort.Name = "Ankunftsort";
+            this.Ankunftsort.ReadOnly = true;
+            // 
+            // Ankunftszeit
+            // 
+            this.Ankunftszeit.HeaderText = "Ankunftszeit";
+            this.Ankunftszeit.Name = "Ankunftszeit";
+            this.Ankunftszeit.ReadOnly = true;
+            // 
+            // Gleis
+            // 
+            this.Gleis.HeaderText = "Gleis / Kante";
+            this.Gleis.Name = "Gleis";
+            this.Gleis.ReadOnly = true;
             // 
             // btnClose
             // 
@@ -150,8 +194,8 @@
             this.Controls.Add(this.btnSearchConnection);
             this.Controls.Add(this.btnSearchEndStation);
             this.Controls.Add(this.btnSearchStartStation);
-            this.Controls.Add(this.ddlEndstation);
-            this.Controls.Add(this.ddlStartstation);
+            this.Controls.Add(this.ddlEndStation);
+            this.Controls.Add(this.ddlStartStation);
             this.Controls.Add(this.lblTo);
             this.Controls.Add(this.lblFrom);
             this.Name = "Form1";
@@ -166,14 +210,19 @@
 
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Label lblTo;
-        private System.Windows.Forms.ComboBox ddlStartstation;
-        private System.Windows.Forms.ComboBox ddlEndstation;
+        private System.Windows.Forms.ComboBox ddlStartStation;
+        private System.Windows.Forms.ComboBox ddlEndStation;
         private System.Windows.Forms.Button btnSearchStartStation;
         private System.Windows.Forms.Button btnSearchEndStation;
         private System.Windows.Forms.Button btnSearchConnection;
         private System.Windows.Forms.DataGridView dgvAbfahrtsplan;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAbfahrtsTafel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Abfahrtsort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Abfahrtszeit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ankunftsort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ankunftszeit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gleis;
     }
 }
 

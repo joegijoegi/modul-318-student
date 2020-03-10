@@ -13,6 +13,7 @@ namespace TransportGUI
 {
     public partial class Form1 : Form
     {
+        private Transport Transport = new Transport();
         public Form1()
         {
             InitializeComponent();
@@ -29,11 +30,11 @@ namespace TransportGUI
 
             if(btn == btnSearchStartStation)
             {
-                SearchStation(ddlStartstation);
+                SearchStation(ddlStartStation);
             }
             else if(btn == btnSearchEndStation)
             {
-                SearchStation(ddlEndstation);
+                SearchStation(ddlEndStation);
             }
         }
 
@@ -43,7 +44,6 @@ namespace TransportGUI
         /// <param name="station"></param>
         private void SearchStation(ComboBox dropDown)
         {
-            Transport transport = new Transport();
             Stations st = new Stations();
 
             if (dropDown.Text.Length <= 2)
@@ -53,18 +53,55 @@ namespace TransportGUI
             else
             {
                 dropDown.Items.Clear();
-                st = transport.GetStations(dropDown.Text);
+                st = Transport.GetStations(dropDown.Text);
                 foreach(var element in st.StationList)
                 {
                     dropDown.Items.Add(element.Name);
                 }
                 dropDown.DroppedDown = true;
+                dropDown.Focus();
             }
         }
 
+        /// <summary>
+        /// Event um das Formular zu schliessen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        /// <summary>
+        /// Sucht Verbindungen und listet diese in einem Datagridview auf.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSearchConnection_Click(object sender, EventArgs e)
+        {
+            Connections con = new Connections();
+
+            if(ddlStartStation == null || ddlEndStation == null)
+            {
+                MessageBox.Show("Bitte geben sie 2 Stationen ein");
+            }
+            else
+            {
+                dgvAbfahrtsplan.Rows.Clear();
+                con = Transport.GetConnections(ddlStartStation.Text, ddlEndStation.Text);
+                foreach (var element in con.ConnectionList)
+                {
+                    if (element.From.Platform == null || element.From.Platform == "")
+                    {
+                        dgvAbfahrtsplan.Rows.Add(element.From.Station.Name, DateTime.Parse(element.From.Departure).ToShortTimeString(), element.To.Station.Name, DateTime.Parse(element.To.Arrival).ToShortTimeString(), "1");
+                    }
+                    else
+                    {
+                        dgvAbfahrtsplan.Rows.Add(element.From.Station.Name, DateTime.Parse(element.From.Departure).ToShortTimeString(), element.To.Station.Name, DateTime.Parse(element.To.Arrival).ToShortTimeString(), element.From.Platform);
+                    }
+                }
+            }
         }
     }
 }

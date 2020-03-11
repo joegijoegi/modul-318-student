@@ -1,6 +1,6 @@
 ﻿namespace TransportGUI
 {
-    partial class Form1
+    partial class Abfahrtsplan
     {
         /// <summary>
         /// Required designer variable.
@@ -131,6 +131,7 @@
             this.dgvAbfahrtsplan.RowHeadersVisible = false;
             this.dgvAbfahrtsplan.Size = new System.Drawing.Size(633, 254);
             this.dgvAbfahrtsplan.TabIndex = 7;
+            this.dgvAbfahrtsplan.TabStop = false;
             // 
             // Abfahrtsort
             // 
@@ -182,8 +183,9 @@
             this.btnAbfahrtsTafel.TabIndex = 6;
             this.btnAbfahrtsTafel.Text = "Abfahrtstafel";
             this.btnAbfahrtsTafel.UseVisualStyleBackColor = true;
+            this.btnAbfahrtsTafel.Click += new System.EventHandler(this.BtnAbfahrtsTafel_Click);
             // 
-            // Form1
+            // Abfahrtsplan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,7 +200,7 @@
             this.Controls.Add(this.ddlStartStation);
             this.Controls.Add(this.lblTo);
             this.Controls.Add(this.lblFrom);
-            this.Name = "Form1";
+            this.Name = "Abfahrtsplan";
             this.Text = "Abfahrtsplan";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAbfahrtsplan)).EndInit();
             this.ResumeLayout(false);

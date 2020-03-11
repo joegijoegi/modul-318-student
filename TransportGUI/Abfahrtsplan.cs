@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace TransportGUI
 {
-    public partial class Form1 : Form
+    public partial class Abfahrtsplan : Form
     {
-        private Transport Transport = new Transport();
-        public Form1()
+        public Transport Transport = new Transport();
+        public Abfahrtsplan()
         {
             InitializeComponent();
         }
@@ -42,7 +42,7 @@ namespace TransportGUI
         /// Methode, welche die Stationen suche und diese auflistet in der Combobox.
         /// </summary>
         /// <param name="station"></param>
-        private void SearchStation(ComboBox dropDown)
+        public void SearchStation(ComboBox dropDown)
         {
             Stations st = new Stations();
 
@@ -56,7 +56,10 @@ namespace TransportGUI
                 st = Transport.GetStations(dropDown.Text);
                 foreach(var element in st.StationList)
                 {
-                    dropDown.Items.Add(element.Name);
+                    if (element.Id != null)
+                    {
+                        dropDown.Items.Add(element.Name);
+                    }
                 }
                 dropDown.DroppedDown = true;
                 dropDown.Focus();
@@ -102,6 +105,16 @@ namespace TransportGUI
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Event öffnet ein neues Form für die Abfahrtstafel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnAbfahrtsTafel_Click(object sender, EventArgs e)
+        {
+            Abfahrtstafel abfahrtstafel = new Abfahrtstafel();
+            abfahrtstafel.ShowDialog();
         }
     }
 }

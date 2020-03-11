@@ -44,7 +44,7 @@ namespace TransportGUI
             else
             {
                 dgvAbfahrtsTafel.Rows.Clear();
-                stationBoard = Abfahrtsplan.Transport.GetStationBoard(ddlStartStation.Text, "");
+                stationBoard = Abfahrtsplan.Transport.GetStationBoard(ddlStartStation.Text, ""); //Redundanz vorhanden, da die Station einzigartig ist.
                 foreach (var element in stationBoard.Entries)
                 {
                     dgvAbfahrtsTafel.Rows.Add(ddlStartStation.Text, DateTime.Parse(element.Stop.Departure.ToString()).ToShortTimeString(), element.To, element.Operator, element.Name);

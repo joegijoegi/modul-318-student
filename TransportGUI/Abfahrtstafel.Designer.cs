@@ -147,6 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnGoBack;
             this.ClientSize = new System.Drawing.Size(706, 452);
             this.Controls.Add(this.btnGoBack);
             this.Controls.Add(this.dgvAbfahrtsTafel);

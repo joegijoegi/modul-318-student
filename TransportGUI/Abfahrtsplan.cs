@@ -17,6 +17,7 @@ namespace TransportGUI
         public Abfahrtsplan()
         {
             InitializeComponent();
+            dtpDate.CustomFormat = "dd.MM.yyyy   HH:mm";
         }
 
         /// <summary>
@@ -91,8 +92,9 @@ namespace TransportGUI
             }
             else
             {
+                string timePicked = $"{dtpDate.Value.Year}-{dtpDate.Value.Month}-{dtpDate.Value.Day}T{dtpDate.Value.Hour}%3A{dtpDate.Value.Minute}";
                 dgvAbfahrtsplan.Rows.Clear();
-                con = Transport.GetConnections(ddlStartStation.Text, ddlEndStation.Text);
+                con = Transport.GetConnections(ddlStartStation.Text, ddlEndStation.Text, timePicked);
                 foreach (var element in con.ConnectionList)
                 {
                     if (element.From.Platform == null || element.From.Platform == "")

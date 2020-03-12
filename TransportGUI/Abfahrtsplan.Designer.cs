@@ -59,6 +59,7 @@
             // 
             // lblTo
             // 
+            this.lblTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTo.AutoSize = true;
             this.lblTo.Location = new System.Drawing.Point(328, 9);
             this.lblTo.Name = "lblTo";
@@ -76,6 +77,7 @@
             // 
             // ddlEndStation
             // 
+            this.ddlEndStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlEndStation.FormattingEnabled = true;
             this.ddlEndStation.Location = new System.Drawing.Point(370, 6);
             this.ddlEndStation.Name = "ddlEndStation";
@@ -94,6 +96,7 @@
             // 
             // btnSearchEndStation
             // 
+            this.btnSearchEndStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchEndStation.Location = new System.Drawing.Point(370, 48);
             this.btnSearchEndStation.Name = "btnSearchEndStation";
             this.btnSearchEndStation.Size = new System.Drawing.Size(275, 23);
@@ -104,6 +107,7 @@
             // 
             // btnSearchConnection
             // 
+            this.btnSearchConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchConnection.Location = new System.Drawing.Point(370, 88);
             this.btnSearchConnection.Name = "btnSearchConnection";
             this.btnSearchConnection.Size = new System.Drawing.Size(275, 23);
@@ -172,7 +176,7 @@
             this.btnClose.Location = new System.Drawing.Point(570, 415);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 8;
+            this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Beenden";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
@@ -202,7 +206,7 @@
             this.btnOrtStation.Location = new System.Drawing.Point(100, 415);
             this.btnOrtStation.Name = "btnOrtStation";
             this.btnOrtStation.Size = new System.Drawing.Size(87, 23);
-            this.btnOrtStation.TabIndex = 9;
+            this.btnOrtStation.TabIndex = 8;
             this.btnOrtStation.Text = "Ort von Station";
             this.btnOrtStation.UseVisualStyleBackColor = true;
             this.btnOrtStation.Click += new System.EventHandler(this.BtnOrtStation_Click);

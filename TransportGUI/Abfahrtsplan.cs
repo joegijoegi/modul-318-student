@@ -19,6 +19,7 @@ namespace TransportGUI
         {
             InitializeComponent();
             dtpDate.CustomFormat = "dd.MM.yyyy   HH:mm";
+            MinimumSize = new Size(684, 489);
         }
 
         /// <summary>

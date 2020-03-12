@@ -18,6 +18,7 @@ namespace TransportGUI
         public Abfahrtstafel()
         {
             InitializeComponent();
+            MinimumSize = new Size(722, 491);
         }
 
         /// <summary>

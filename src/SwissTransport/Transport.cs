@@ -62,6 +62,24 @@ namespace SwissTransport
             return null;
         }
 
+        public Coordinate GetCoordinates(string xCord, string yCord)
+        {
+            xCord = System.Uri.EscapeDataString(xCord);
+            yCord = System.Uri.EscapeDataString(yCord);
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?station=" + xCord + "," + yCord);
+            var response = request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            if (responseStream != null)
+            {
+                var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                var coordinates =
+                    JsonConvert.DeserializeObject<Coordinate>(readToEnd);
+                return coordinates;
+            }
+
+            return null;
+        }
         private static WebRequest CreateWebRequest(string url)
         {
             var request = WebRequest.Create(url);
@@ -72,5 +90,7 @@ namespace SwissTransport
             
             return request;
         }
+
+        
     }
 }

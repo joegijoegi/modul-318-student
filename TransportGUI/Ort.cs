@@ -1,13 +1,9 @@
 ﻿using SwissTransport;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Device.Location;
+using System.Collections.Generic;
 
 namespace TransportGUI
 {
@@ -17,6 +13,7 @@ namespace TransportGUI
         public Ort()
         {
             InitializeComponent();
+            MinimumSize = new Size(371, 237);
         }
 
         /// <summary>
@@ -55,7 +52,7 @@ namespace TransportGUI
 
             string xCor = st.StationList[0].Coordinate.XCoordinate.ToString();
             string yCor = st.StationList[0].Coordinate.YCoordinate.ToString();
-            System.Diagnostics.Process.Start($"https://www.google.ch/maps/place/47%C2%B010'12.8%22N+8%C2%B005'55.1%22E/@{xCor},{yCor},15.5z/data=!4m2!3m1!1s0x0:0x0");
+            System.Diagnostics.Process.Start($"https://www.google.ch/maps/place/{xCor},{yCor}");
         }
 
         /// <summary>
@@ -77,6 +74,31 @@ namespace TransportGUI
         private void Ort_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void BtnNearStation_Click(object sender, EventArgs e)
+        {
+            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+
+            watcher.TryStart(false, TimeSpan.FromMilliseconds(3000));
+
+            GeoCoordinate coord = watcher.Position.Location;
+            if (coord.IsUnknown != true)
+            {
+                Coordinate coordinate = new Coordinate();
+                string xCor = coord.Longitude.ToString().Replace(",", ".");
+                string yCor = coord.Latitude.ToString().Replace(",", ".");
+                Transport t = new Transport();
+                coordinate = t.GetCoordinates(xCor, yCor);
+                foreach(var element in coordinate.Type)
+                {
+                    ddlNearStation.Items.Add(element);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Konnte nicht auf Standort zugreifen");
+            }
         }
     }
 }

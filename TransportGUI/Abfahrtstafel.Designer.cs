@@ -54,6 +54,8 @@
             // 
             // ddlStartStation
             // 
+            this.ddlStartStation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlStartStation.FormattingEnabled = true;
             this.ddlStartStation.Location = new System.Drawing.Point(67, 6);
             this.ddlStartStation.Name = "ddlStartStation";
@@ -62,6 +64,8 @@
             // 
             // btnSearchStation
             // 
+            this.btnSearchStation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchStation.Location = new System.Drawing.Point(67, 42);
             this.btnSearchStation.Name = "btnSearchStation";
             this.btnSearchStation.Size = new System.Drawing.Size(289, 23);
@@ -72,6 +76,7 @@
             // 
             // btnSearchConnection
             // 
+            this.btnSearchConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchConnection.Location = new System.Drawing.Point(427, 4);
             this.btnSearchConnection.Name = "btnSearchConnection";
             this.btnSearchConnection.Size = new System.Drawing.Size(267, 23);
@@ -151,7 +156,7 @@
             this.btnOrtStation.Location = new System.Drawing.Point(117, 417);
             this.btnOrtStation.Name = "btnOrtStation";
             this.btnOrtStation.Size = new System.Drawing.Size(87, 23);
-            this.btnOrtStation.TabIndex = 10;
+            this.btnOrtStation.TabIndex = 5;
             this.btnOrtStation.Text = "Ort von Station";
             this.btnOrtStation.UseVisualStyleBackColor = true;
             this.btnOrtStation.Click += new System.EventHandler(this.BtnOrtStation_Click);

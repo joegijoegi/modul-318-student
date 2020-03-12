@@ -13,7 +13,8 @@ namespace TransportGUI
 {
     public partial class Abfahrtstafel : Form
     {
-        Abfahrtsplan Abfahrtsplan = new Abfahrtsplan();
+        Abfahrtsplan AbfahrtsPlan = new Abfahrtsplan();
+        SwitchForms Sf = new SwitchForms();
         public Abfahrtstafel()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace TransportGUI
         /// <param name="e"></param>
         private void BtnSearchStation_Click(object sender, EventArgs e)
         {
-            Abfahrtsplan.SearchStation(ddlStartStation);
+            AbfahrtsPlan.SearchStation(ddlStartStation);
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace TransportGUI
             else
             {
                 dgvAbfahrtsTafel.Rows.Clear();
-                stationBoard = Abfahrtsplan.Transport.GetStationBoard(ddlStartStation.Text, ""); //Redundanz vorhanden, da die Station einzigartig ist.
+                stationBoard = AbfahrtsPlan.Transport.GetStationBoard(ddlStartStation.Text, ""); //Redundanz vorhanden, da die Station einzigartig ist.
                 foreach (var element in stationBoard.Entries)
                 {
                     dgvAbfahrtsTafel.Rows.Add(ddlStartStation.Text, DateTime.Parse(element.Stop.Departure.ToString()).ToShortTimeString(), element.To, element.Operator, element.Name);
@@ -53,13 +54,63 @@ namespace TransportGUI
         }
 
         /// <summary>
-        /// Mit dieser Funktion geht man zurück auf das andere Form
+        /// Methode, welche die Stationen suche und diese auflistet in der Combobox.
+        /// </summary>
+        /// <param name="station"></param>
+        public void SearchStation(ComboBox dropDown)
+        {
+            Stations st = new Stations();
+
+            if (dropDown.Text.Length <= 2)
+            {
+                MessageBox.Show("Bitte geben Sie mehr Buchstaben ein, um das Ergebnis genauer anzuzeigen");
+            }
+            else
+            {
+                dropDown.Items.Clear();
+                st = AbfahrtsPlan.Transport.GetStations(dropDown.Text);
+                foreach (var element in st.StationList)
+                {
+                    if (element.Id != null)
+                    {
+                        dropDown.Items.Add(element.Name);
+                    }
+                }
+                dropDown.DroppedDown = true;
+                dropDown.Focus();
+            }
+        }
+
+        /// <summary>
+        /// Mit dieser Funktion geht man auf das andere Form
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnGoBack_Click(object sender, EventArgs e)
+        private void BtnAbfahrtsplan_Click(object sender, EventArgs e)
         {
-            Close();
+            Hide();
+            Sf.SwitchToAbfahrtsplan();
+        }
+
+        /// <summary>
+        /// Mit dieser Funktion geht man auf das andere Form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnOrtStation_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Sf.SwitchToOrt();
+        }
+
+        /// <summary>
+        /// Event um über das Kreuz das Programm zu schliessen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Abfahrtstafel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

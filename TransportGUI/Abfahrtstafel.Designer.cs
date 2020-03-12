@@ -38,7 +38,8 @@
             this.Ankunftsort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ankunftszeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gleis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnGoBack = new System.Windows.Forms.Button();
+            this.btnAbfahrtsplan = new System.Windows.Forms.Button();
+            this.btnOrtStation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAbfahrtsTafel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             this.btnSearchStation.Name = "btnSearchStation";
             this.btnSearchStation.Size = new System.Drawing.Size(289, 23);
             this.btnSearchStation.TabIndex = 2;
-            this.btnSearchStation.Text = "Passende Verbindung suchen";
+            this.btnSearchStation.Text = "Passende Station suchen";
             this.btnSearchStation.UseVisualStyleBackColor = true;
             this.btnSearchStation.Click += new System.EventHandler(this.BtnSearchStation_Click);
             // 
@@ -132,24 +133,37 @@
             this.Gleis.Name = "Gleis";
             this.Gleis.ReadOnly = true;
             // 
-            // btnGoBack
+            // btnAbfahrtsplan
             // 
-            this.btnGoBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGoBack.Location = new System.Drawing.Point(15, 417);
-            this.btnGoBack.Name = "btnGoBack";
-            this.btnGoBack.Size = new System.Drawing.Size(96, 23);
-            this.btnGoBack.TabIndex = 4;
-            this.btnGoBack.Text = "Zurück";
-            this.btnGoBack.UseVisualStyleBackColor = true;
-            this.btnGoBack.Click += new System.EventHandler(this.BtnGoBack_Click);
+            this.btnAbfahrtsplan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAbfahrtsplan.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAbfahrtsplan.Location = new System.Drawing.Point(15, 417);
+            this.btnAbfahrtsplan.Name = "btnAbfahrtsplan";
+            this.btnAbfahrtsplan.Size = new System.Drawing.Size(96, 23);
+            this.btnAbfahrtsplan.TabIndex = 4;
+            this.btnAbfahrtsplan.Text = "Abfahrtsplan";
+            this.btnAbfahrtsplan.UseVisualStyleBackColor = true;
+            this.btnAbfahrtsplan.Click += new System.EventHandler(this.BtnAbfahrtsplan_Click);
+            // 
+            // btnOrtStation
+            // 
+            this.btnOrtStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOrtStation.Location = new System.Drawing.Point(117, 417);
+            this.btnOrtStation.Name = "btnOrtStation";
+            this.btnOrtStation.Size = new System.Drawing.Size(87, 23);
+            this.btnOrtStation.TabIndex = 10;
+            this.btnOrtStation.Text = "Ort von Station";
+            this.btnOrtStation.UseVisualStyleBackColor = true;
+            this.btnOrtStation.Click += new System.EventHandler(this.BtnOrtStation_Click);
             // 
             // Abfahrtstafel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnGoBack;
+            this.CancelButton = this.btnAbfahrtsplan;
             this.ClientSize = new System.Drawing.Size(706, 452);
-            this.Controls.Add(this.btnGoBack);
+            this.Controls.Add(this.btnOrtStation);
+            this.Controls.Add(this.btnAbfahrtsplan);
             this.Controls.Add(this.dgvAbfahrtsTafel);
             this.Controls.Add(this.btnSearchConnection);
             this.Controls.Add(this.btnSearchStation);
@@ -157,6 +171,7 @@
             this.Controls.Add(this.lblStation);
             this.Name = "Abfahrtstafel";
             this.Text = "Abfahrtstafel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Abfahrtstafel_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAbfahrtsTafel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -170,11 +185,12 @@
         private System.Windows.Forms.Button btnSearchStation;
         private System.Windows.Forms.Button btnSearchConnection;
         private System.Windows.Forms.DataGridView dgvAbfahrtsTafel;
-        private System.Windows.Forms.Button btnGoBack;
+        private System.Windows.Forms.Button btnAbfahrtsplan;
         private System.Windows.Forms.DataGridViewTextBoxColumn Abfahrtsort;
         private System.Windows.Forms.DataGridViewTextBoxColumn Abfahrtszeit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ankunftsort;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ankunftszeit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gleis;
+        private System.Windows.Forms.Button btnOrtStation;
     }
 }

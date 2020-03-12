@@ -14,6 +14,7 @@ namespace TransportGUI
     public partial class Abfahrtsplan : Form
     {
         public Transport Transport = new Transport();
+        SwitchForms Sf = new SwitchForms();
         public Abfahrtsplan()
         {
             InitializeComponent();
@@ -74,7 +75,7 @@ namespace TransportGUI
         /// <param name="e"></param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         /// <summary>
@@ -115,8 +116,24 @@ namespace TransportGUI
         /// <param name="e"></param>
         private void BtnAbfahrtsTafel_Click(object sender, EventArgs e)
         {
-            Abfahrtstafel abfahrtstafel = new Abfahrtstafel();
-            abfahrtstafel.ShowDialog();
+            Hide();
+            Sf.SwitchToAbfahrtstafel();
+        }
+
+        private void BtnOrtStation_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Sf.SwitchToOrt();
+        }
+
+        /// <summary>
+        /// Event um über das Kreuz das Programm zu schliessen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Abfahrtsplan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

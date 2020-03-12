@@ -76,6 +76,11 @@ namespace TransportGUI
             Application.Exit();
         }
 
+        /// <summary>
+        /// Funktion die Stationen in der Nähe in eine Combobox abfüllt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnNearStation_Click(object sender, EventArgs e)
         {
             GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();

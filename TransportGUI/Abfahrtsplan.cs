@@ -121,6 +121,11 @@ namespace TransportGUI
             Sf.SwitchToAbfahrtstafel();
         }
 
+        /// <summary>
+        /// FUnktion um Form zu wechseln
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOrtStation_Click(object sender, EventArgs e)
         {
             Hide();
